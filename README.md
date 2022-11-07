@@ -65,7 +65,13 @@ Please provide us with params.txt and spades.log files from the output directory
 SPAdes log can be found here: /home/haydee/metagomes/results/assembly_GR_S381/spades.log
 Thank you for using SPAdes!
 `
- 
- 
- 
+
+Kraken2
+
+`for infile in *_R1.trim.fastq.gz
+do
+base=$(basename ${infile} _R1.trim.fastq.gz)
+kraken2 --db /home/betterlab/kraken2/database/db_kraken2 --threads 8 --paired --fastq-input ${infile} ${base}_R2.trim.fastq.gz --output ~/metagenomes/results/TAXONOMY_READS/${base}.kraken --report ~/metagenomes/results/TAXONOMY_READS/${base}.report
+done
+` 
  
