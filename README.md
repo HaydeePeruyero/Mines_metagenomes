@@ -54,7 +54,21 @@ Mover los archivos .trim a la carpeta trimmed_fastq
  
  `metaspades.py -1 GR_S381_R1.trim.fastq.gz -2 GR_S381_R2.trim.fastq.gz -o ../../results/assembly_GR_S381`
  
- Da un error.
+ Da un error:
+ `<jemalloc>: Error in malloc(): out of memory
+ Requested: 32575720008
+
+
+== Error ==  system call for: "['/opt/anaconda3/envs/metagenomics/bin/spades-hammer', '/home/haydee/metagomes/results/assembly_GR_S381/corrected/configs/config.info']" finished abnormally, OS return value: -6
+
+In case you have troubles running SPAdes, you can write to spades.support@cab.spbu.ru
+or report an issue on our GitHub repository github.com/ablab/spades
+Please provide us with params.txt and spades.log files from the output directory.
+
+SPAdes log can be found here: /home/haydee/metagomes/results/assembly_GR_S381/spades.log
+
+Thank you for using SPAdes!
+`
  
  
  
