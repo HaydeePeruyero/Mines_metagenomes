@@ -74,4 +74,16 @@ base=$(basename ${infile} _R1.trim.fastq.gz)
 kraken2 --db /home/betterlab/kraken2/database/db_kraken2 --threads 20 --paired ${infile} ${base}_R2.trim.fastq.gz --output /home/haydee/metagenomes/results/TAXONOMY_READS/${base}.kraken --report /home/haydee/metagenomes/results/TAXONOMY_READS/${base}.report
 done
 ` 
-kraken2 --db /home/betterlab/kraken2/database/db_kraken2 --threads 20 --paired GR_S381_R1.trim.fastq.gz GR_S381_R2.trim.fastq.gz --output ../../results/TAXONOMY_READS/GR_S381.kraken --report ../../results/TAXONOMY_READS/GR_S381.report
+Corrieron manualmente
+
+`kraken2 --db /home/betterlab/kraken2/database/db_kraken2 --threads 20 --paired GR_S381_R1.trim.fastq.gz GR_S381_R2.trim.fastq.gz --output ../../results/TAXONOMY_READS/GR_S381.kraken --report ../../results/TAXONOMY_READS/GR_S381.report`
+
+Crear kraken-biom
+`cd metagenomes/results/TAXONOMY_READS
+ kraken-biom GR_S381.report Pmt2_S287.report S1_S286.report --fmt json -o metagenomes.biom
+`
+
+--
+
+# Análisis en R
+
