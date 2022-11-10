@@ -2,11 +2,12 @@ library("phyloseq")
 library("ggplot2")
 library("RColorBrewer")
 library("patchwork")
+library(vegan)
 
-setwd("~/metagenomes/results/TAXONOMY_READS")
+setwd("~/R_sites/metagenomes_")
 
 
-raw_metagenomes <- import_biom("metagenomes.biom")
+raw_metagenomes <- import_biom("biom-files/metagenomes.biom")
 class(raw_metagenomes)
 View(raw_metagenomes@tax_table@.Data)
 
@@ -15,6 +16,25 @@ View(raw_metagenomes@tax_table@.Data)
 
 colnames(raw_metagenomes@tax_table@.Data)<- c("Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species")
 View(raw_metagenomes@tax_table@.Data)
+
+
+pstoveg_otu <- function(PS) {
+  OTU <- phyloseq::otu_table(PS)
+  if (phyloseq::taxa_are_rows(OTU)) {
+    OTU <- t(OTU)
+  }
+  return(as(OTU,'matrix'))
+}
+
+
+
+
+
+#dim(otu_table(raw_metagenomes))
+#taxa_are_rows(raw_metagenomes)
+#otu_f <- pstoveg_otu(raw_metagenomes)
+#dim(otu)
+
 
 unique(raw_metagenomes@tax_table@.Data[,"Kingdom"])
 
@@ -110,7 +130,7 @@ ggsave("~/metagenomes/results/diversity/rel_abundance_plot_f.png", plot = relati
 
 # Filtrado
 
-raw_biom <- import_biom("~/metagenomes/results/TAXONOMY_READS/metagenomes.biom")
+raw_biom <- import_biom("~/R_sites/metagenomes_/biom-files/metagenomes.biom")
 
 #Give name to taxonomic categories
 raw_biom@tax_table@.Data<-substring(raw_biom@tax_table@.Data,4)
@@ -118,6 +138,10 @@ colnames(raw_biom@tax_table@.Data)<- c("Kingdom","Phylum", "Class", "Order","Fam
 
 # Generate otu_table
 otu<-otu_table(raw_biom@otu_table@.Data, taxa_are_rows = TRUE) 
+
+otu_t <- otu@.Data
+otu_t <- t(otu_t)
+otu_t <- as.matrix(otu_t)
 
 # Generate taxonomy table
 tax<-tax_table(raw_biom@tax_table@.Data)
