@@ -160,6 +160,10 @@ checkm taxonomy_wf domain Bacteria -x fasta MAXBIN/ CHECKM/
 checkm qa CHECKM/Bacteria.ms CHECKM/ --file CHECKM//quality_GR.tsv --tab_table -o 2
 `
 
+Taxonomy MAG
+
+`kraken2 -db /home/betterlab/kraken2/database/db_kraken2 -threads 20 -input GR.005.fasta --output ../../TAXONOMY_MAG/GR.005.kraken --report ../../TAXONOMY_MAG/GR.005.report
+`
 
 --
 
