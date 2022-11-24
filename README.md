@@ -165,6 +165,10 @@ Taxonomy MAG
 `kraken2 -db /home/betterlab/kraken2/database/db_kraken2 -threads 20 -input GR.005.fasta --output ../../TAXONOMY_MAG/GR.005.kraken --report ../../TAXONOMY_MAG/GR.005.report
 `
 
+Prokka
+
+
+
 --
 
 # Análisis en R
