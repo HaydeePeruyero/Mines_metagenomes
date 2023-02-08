@@ -4,7 +4,7 @@ Seeds: Fluorinase, Chlorinase, Hidroxylase
 
 Note: without shaving
 
-![tree](<iframe src="https://docs.google.com/document/d/e/2PACX-1vRtzKSIJsk5Eo_IuNP7HUwrhRsXQg-As2NcvQQ4Eqxwe-5vzFrz1-nEoGo-3FVVt3fSqhGRk_yeCL5A/pub?embedded=true"></iframe>)
+![tree](https://lh4.googleusercontent.com/PwCtJBPIwx6GahjbT9ZWNCZ_gxFdCx8A9V2GYAI4w1oL83wglcLNK9GGWRPYZdrwJhp0xKyAJlhgV2QvDUihGwn5GYodAGW6xa4vd5vEL8BXoV_peFWL9xhuVXcEq7r988wOKqMP5REJXRCn3TUFd6I)
 
 
 # Tree with 72 sequences given by Cesar and 14 GR_S381 + 17 Pmt2_S287 + 15 S1_S286
