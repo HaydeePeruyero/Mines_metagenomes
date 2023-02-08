@@ -11,6 +11,8 @@ Note: without shaving
 
 Note: without shaving
 
+![tree](https://lh6.googleusercontent.com/ulI_1smufN_z98AJO8KKTwcksAlDfnYfySQ6Vk8NwgbyagblKffg9nWXf-N6WnTKMaZAhJMINQqK96LIRCkW-9lm9PsgD3-cJcOFMrijTyNZLnPyc_Kthx2HaBN0rfteaJBTwZPXR-1ZA3nowC25zVo)
+
 
 # Tree with 72 sequences given by Cesar and 14 GR_S381 + 17 Pmt2_S287 + 15 S1_S286
 
