@@ -6,7 +6,7 @@ We verify the quality at each base in all the reads for the 3 samples and we dec
 
 ### GR_S381
 
-![a) Quality of raw sample GR_S381_R1](https://lh4.googleusercontent.com/uOR4-kwZXORj24k1kJFU-E7e_ZyhkXjWfgUNOCT1NPJuDrYvaQNImT-blhY7921NouvJe1Ol2msVOjTB44tQZDyl_5GwqW9H8nfIcmFYVM2Jb5_8tt8vxi8r58o1absx4jwC_w3qVXJ_PAcPY4i-CM0)
+[![a) Quality of raw sample GR_S381_R1](https://lh4.googleusercontent.com/uOR4-kwZXORj24k1kJFU-E7e_ZyhkXjWfgUNOCT1NPJuDrYvaQNImT-blhY7921NouvJe1Ol2msVOjTB44tQZDyl_5GwqW9H8nfIcmFYVM2Jb5_8tt8vxi8r58o1absx4jwC_w3qVXJ_PAcPY4i-CM0)]
 ![b) Quality of trimmed sample GR_S381_R1](https://lh4.googleusercontent.com/V8eyRZUy6m4qsVij44dQ-SNJlN8OSuwvHFRha0MG1sRh9B04hBJnrVY2_IERvM5KoIqxmaOitIS09qZxGG52VGdaZfzKGxpEEukGQSX19n29WoXXX2O0_AE4e6oTqaVfEFVqXYWDZBnDm_WIjbWtV5w)
 ![c) Quality of raw sample GR_S381_R2](https://lh4.googleusercontent.com/T0kGpZ_YBZn8xBrqtPGOOU4j28tnRsfb4SrpRgOFkFP9z9mo0Y-naafF8Fp-O36_EdIdb2VOWtXF2N0cU1KMSwrhARc5cAJC439Wq8kx46oxt4kJfKbMXGmRtPQYsKpm6g9VJSLU_dqBSjUBGMqIJKs)
 ![d) Quality of trimmed sample GR_S381_R2](https://lh5.googleusercontent.com/KDl_4rPQYmemd07GBvy4y-CoCitKrcUDDGDAc5egO3hr7hgVoKmEzkAYXNeTNuqKiAYRdvCpVQwCr5-grebX7t_gL7TQlk1dzlPCfLXfICe0K3OcE6nzEYWyZGet3dochkfYWbNvgVGz-4lJxPogK1A)
