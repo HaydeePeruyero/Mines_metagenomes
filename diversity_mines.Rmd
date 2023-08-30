@@ -1,0 +1,190 @@
+---
+title: "Diversity in Pmt2 and S1"
+author: "Haydeé"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+We analysed the two metagenomes Pmt2 and S1 using phyloseq. First we process the biom file and subset by Bacteria. 
+
+```{r, include=FALSE}
+library("phyloseq")
+library("ggplot2")
+library("RColorBrewer")
+library("patchwork")
+library("tidyverse")
+```
+
+
+```{r, include=FALSE}
+raw_metagenomes <- import_biom("~/R_sites/metagenomes_/biom-files/metagenomes_Pmt_S1.biom")
+class(raw_metagenomes)
+
+
+raw_metagenomes@tax_table@.Data <- substring(raw_metagenomes@tax_table@.Data, 4)
+
+
+colnames(raw_metagenomes@tax_table@.Data)<- c("Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species")
+
+
+unique(raw_metagenomes@tax_table@.Data[,"Kingdom"])
+
+raw_metagenomes <- subset_taxa(raw_metagenomes, Kingdom == "Bacteria")
+```
+
+```{r, include=FALSE}
+phylums <- sort(unique(raw_metagenomes@tax_table@.Data[,"Phylum"]))
+Genus <- sort(unique(raw_metagenomes@tax_table@.Data[,"Genus"]))
+```
+
+There are `r length(phylums) -1` unique Phylums and `r length(Genus)-1` unique Genus across the two metagenomes.
+
+
+
+
+The most abundant Phylums are in the following table.
+
+```{r}
+summary(raw_metagenomes@tax_table@.Data== "")
+raw_metagenomes <- subset_taxa(raw_metagenomes, Genus != "")
+relative_metagenomes <- transform_sample_counts(raw_metagenomes, function(x) x*100 / sum(x) )
+relative_phylums <- tax_glom(relative_metagenomes, taxrank = 'Phylum')
+relative_phylums_df <- psmelt(relative_phylums)
+relative_phylums_df[order(-relative_phylums_df$Abundance),][1:11,]
+```
+```{r}
+relative_phylums_df2 <- relative_phylums_df[-c(1,4,5)]
+rel_phyls <- spread(relative_phylums_df2, Sample, Abundance)
+```
+
+```{r}
+rel_phyls
+```
+
+
+```{r}
+rel_phyls[order(-rel_phyls$Pmt2_S287), ]
+```
+
+```{r}
+rel_phyls[order(-rel_phyls$S1_S286), ]
+```
+
+
+```{r}
+rel_phyls %>% filter(rel_phyls$Pmt2_S287 > 2.2*rel_phyls$S1_S286)
+```
+
+```{r}
+rel_phyls %>% filter(1.5*rel_phyls$Pmt2_S287 < rel_phyls$S1_S286)
+```
+
+```{r}
+rel_phyls %>% filter(abs(rel_phyls$Pmt2_S287 - rel_phyls$S1_S286) < 0.001)
+```
+
+
+The deepth of the samples are the following:
+
+```{r}
+sample_sums(raw_metagenomes)
+```
+
+
+
+
+
+```{r}
+relative_genus <- tax_glom(relative_metagenomes, taxrank = 'Genus')
+relative_genus_df <- psmelt(relative_genus)
+relative_genus_df$Genus[relative_genus_df$Abundance < 1] <- "Genus < 1% abundance"
+```
+
+Genus with abundance > 1% in Pmt2.
+
+```{r}
+relative_genus_df %>% filter(Sample=="Pmt2_S287" & Abundance >= 1)%>% count(Genus)
+```
+
+Genus with abundance > 1% in Topaz.
+
+```{r}
+relative_genus_df %>% filter(Sample=="S1_S286" & Abundance >= 1)%>% count(Genus)
+```
+
+```{r}
+relative_genus_df %>% filter(Sample=="Pmt2_S287" & Abundance < 1)%>% count(Genus)
+```
+
+
+```{r}
+relative_genus_df %>% filter(Sample=="S1_S286" & Abundance < 1)%>% count(Genus)
+```
+
+If we subset just by Actinobacteria, we obtain the following.
+
+```{r, include=FALSE}
+actinos <- subset_taxa(raw_metagenomes, Phylum == "Actinobacteria")
+relative_actinos <- transform_sample_counts(actinos, function(x) x*100 / sum(x) )
+
+relative_actinos_genus <- tax_glom(relative_actinos, taxrank = 'Genus')
+relative_actinos_df <- psmelt(relative_actinos_genus)
+relative_actinos_df$Genus[relative_actinos_df$Abundance < 1] <- "Genus < 1% abundance"
+
+
+```
+
+```{r}
+relative_actinos_df2 <- psmelt(relative_actinos_genus)
+length(sort(unique(relative_actinos_df2[,"Genus"])))
+```
+
+There are `r length(sort(unique(relative_actinos_df2[,"Genus"]))) ` unique genus across Actinobacteria.
+
+
+
+There are 17 unique Genus in sample Pmt2 with abundance >= 1.
+
+```{r}
+relative_actinos_df %>% filter(Sample=="Pmt2_S287" & Abundance >= 1)%>% count(Genus)
+```
+
+There are 19 unique Genus in sample S1 with abundance >= 1.
+
+```{r}
+relative_actinos_df %>% filter(Sample=="S1_S286" & Abundance >= 1)%>% count(Genus)
+```
+
+And in total, there are 22 Genus with abundance over than 1%.
+
+```{r}
+relative_actinos_df %>% filter(Abundance >= 1)%>% count(Genus)
+```
+
+There are 205 Genus with abundance less than 1% in sample Pmt2 and 203 in Sample S1.
+```{r}
+relative_actinos_df %>% group_by(Sample) %>%filter(Abundance < 1)%>% count(Genus)
+```
+
+```{r}
+relative_genus_df %>% filter(Sample=="Pmt2_S287" & Phylum=="Actinobacteria" & Abundance >= 1)%>% count(Genus)
+```
+
+
+```{r}
+relative_genus_df %>% filter(Sample=="S1_S286" & Phylum=="Actinobacteria" & Abundance >= 1)%>% count(Genus)
+```
+
+
+```{r}
+relative_genus_df %>% filter(Sample=="Pmt2_S287" & Phylum=="Actinobacteria" & Abundance < 1)%>% count(Genus)
+```
+
+
+```{r}
+relative_genus_df %>% filter(Sample=="S1_S286" & Phylum=="Actinobacteria" & Abundance < 1)%>% count(Genus)
+```
+
