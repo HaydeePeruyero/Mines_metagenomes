@@ -1,1 +1,7 @@
-# Metagenome analysis of mines
+# Metagenomics analysis in mines
+
+Samples: Pmt and Topaz Mountain
+
+----
+
+
